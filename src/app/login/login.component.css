@@ -1,0 +1,147 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.top {
+    margin-top: 2%;
+}
+
+.brand-name {
+    margin: 5% 3%;
+    color: rgb(235, 5, 5);
+    font-style: italic;
+    font-family: 'Friz Quadrata', serif;
+    font-weight: bold; /* Changed to bold */
+    font-size: 30px; /* Reduced font size to 30px */
+    line-height: 1; /* Adjusted line height to reduce height */
+}
+
+.message {
+    font-weight: bold;
+    color: #000000;
+    font-size: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.message-success {
+    font-weight: bold;
+    color: #000000;
+    font-size: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.card {
+    margin-top: 100px;
+    border: none; /* Remove border from the card */
+}
+
+.card-header {
+    background-color: #d9232d;
+    color: white;
+}
+
+.form-group {
+    margin: 5%; /* 5% margin around each form group */
+}
+.mobile-input {
+    border-bottom: 1px solid #000000; /* Bottom border color */
+    color: #000000; /* Text color of the input */
+  }
+  
+  .mobile-input::placeholder {
+    font-size: 13px; /* Placeholder text size */
+    color: #000000; /* Placeholder text color */
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+.form-group label {
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #242222;
+    border: none;
+    border-radius: 20px;
+    padding: 11px;
+    width: 40%;
+    margin-top: 5%; /* 5% margin on top of the button */
+}
+
+.btn-primary:hover {
+    background-color: #000000;
+}
+
+.btn-secondary {
+    background-color: #ffffff;
+    border: 1px solid black;
+    width: 100%;
+    color: #000000;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 5%; /* 5% margin on top and bottom of the button */
+}
+
+/* .btn-secondary:hover {
+    background-color: #5a6268;
+} */
+
+.Privacy {
+    font-size: 13px;
+    color: #000000;
+}
+
+.form-control-underlined {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #ced4da;
+    padding: 8px 0;
+    margin-bottom: 5%; /* 5% margin on top and bottom of the input */
+}
+
+.form-control-underlined:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #d9232d;
+}
+
+.equal-space {
+    text-align: center;
+    margin-bottom: 5%; /* 5% margin on top and bottom of the text */
+}
+
+.or {
+    display: inline-block;
+}
+
+.different-number {
+    text-decoration: underline;
+    color: #000000;
+}
+
+.resend-code {
+    text-decoration: underline;
+    color: #000000;
+}
+
+.full-width-form {
+    width: 100%;
+    border: none; /* Remove border from the form */
+}
+/* Adjust width of OTP input fields */
+/* Adjust width and underline color of OTP input fields */
+.otp-input {
+    width: 1cm;
+    color: #000000; /* Text color */
+    border-color: #000000; /* Underline color */
+  }
+  
+  /* Center OTP inputs horizontally */
+  .otp-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  
