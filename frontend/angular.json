@@ -31,10 +31,18 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
+<<<<<<< HEAD
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
+=======
+  "src/assets",
+  "src/favicon.ico"
+],
+            "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+>>>>>>> bb1bb1f787f5ce8683ce3cac7fc4e83c63e9c7e2
               "src/styles.css"
             ],
             "scripts": [],
@@ -99,6 +107,10 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
+=======
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+>>>>>>> bb1bb1f787f5ce8683ce3cac7fc4e83c63e9c7e2
               "src/styles.css"
             ],
             "scripts": []
@@ -106,5 +118,11 @@
         }
       }
     }
+<<<<<<< HEAD
+=======
+  },
+  "cli": {
+    "analytics": false
+>>>>>>> bb1bb1f787f5ce8683ce3cac7fc4e83c63e9c7e2
   }
 }

@@ -1,0 +1,86 @@
+<mat-card class="signup-card">
+  <mat-card-title style="margin-bottom: 20px;">Sign Up Form</mat-card-title>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" required>
+      <mat-error *ngIf="signupForm.get('firstName')?.invalid">First name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" required>
+      <mat-error *ngIf="signupForm.get('lastName')?.invalid">Last name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Date of Birth</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dob" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="signupForm.get('dob')?.invalid">Date of birth is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" required>
+      <mat-error *ngIf="signupForm.get('email')?.invalid">Valid email is required</mat-error>
+    </mat-form-field>
+
+    <div class="phone-number-container">
+      <mat-form-field appearance="outline" class="country-code">
+        <mat-label>Country Code</mat-label>
+        <mat-select formControlName="countryCode" required>
+          <mat-option value="+1">+1 (USA)</mat-option>
+          <mat-option value="+91">+91 (India)</mat-option>
+          <mat-option value="+44">+44 (UK)</mat-option>
+          <mat-option value="+62">+62 (indonaisa)</mat-option>
+
+          <!-- Add more country codes as needed -->
+        </mat-select>
+        <mat-error *ngIf="signupForm.get('countryCode')?.invalid">Country code is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="phone-number">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phoneNumber" required>
+        <mat-error *ngIf="signupForm.get('phoneNumber')?.invalid">Phone number is required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Location</mat-label>
+      <input matInput formControlName="location" required>
+      <mat-error *ngIf="signupForm.get('location')?.invalid">Location is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="role" required>
+        <mat-option value="admin">Admin</mat-option>
+        <mat-option value="super admin">Super Admin</mat-option>
+        <mat-option value="manager">Manager</mat-option>
+        <mat-option value="employee">Employee</mat-option>
+      </mat-select>
+      <mat-error *ngIf="signupForm.get('role')?.invalid">Role is required</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+  </form>
+  <p class="login-link">Already have an account? <a routerLink="/">Go to login page</a></p>
+</mat-card>
+
+<style>
+  .phone-number-container {
+    display: flex;
+    gap: 10px;
+  }
+
+  .country-code {
+    flex: 1;
+  }
+
+  .phone-number {
+    flex: 2;
+  }
+</style>
