@@ -27,11 +27,26 @@
       <mat-error *ngIf="signupForm.get('email')?.invalid">Valid email is required</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Phone Number</mat-label>
-      <input matInput formControlName="phone" required>
-      <mat-error *ngIf="signupForm.get('phone')?.invalid">Phone number is required</mat-error>
-    </mat-form-field>
+    <div class="phone-number-container">
+      <mat-form-field appearance="outline" class="country-code">
+        <mat-label>Country Code</mat-label>
+        <mat-select formControlName="countryCode" required>
+          <mat-option value="+1">+1 (USA)</mat-option>
+          <mat-option value="+91">+91 (India)</mat-option>
+          <mat-option value="+44">+44 (UK)</mat-option>
+          <mat-option value="+62">+62 (indonaisa)</mat-option>
+
+          <!-- Add more country codes as needed -->
+        </mat-select>
+        <mat-error *ngIf="signupForm.get('countryCode')?.invalid">Country code is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="phone-number">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phoneNumber" required>
+        <mat-error *ngIf="signupForm.get('phoneNumber')?.invalid">Phone number is required</mat-error>
+      </mat-form-field>
+    </div>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Location</mat-label>
@@ -54,3 +69,18 @@
   </form>
   <p class="login-link">Already have an account? <a routerLink="/">Go to login page</a></p>
 </mat-card>
+
+<style>
+  .phone-number-container {
+    display: flex;
+    gap: 10px;
+  }
+
+  .country-code {
+    flex: 1;
+  }
+
+  .phone-number {
+    flex: 2;
+  }
+</style>

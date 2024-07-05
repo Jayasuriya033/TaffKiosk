@@ -29,7 +29,7 @@ export class SignupComponent implements OnInit {
       console.log('Form Submitted', this.signupForm.value);
       // Handle form submission logic
       
-      this.router.navigate(['/login']); 
+      this.router.navigate(['/home']); 
     }
   }
 }

@@ -13,18 +13,21 @@
       <mat-error *ngIf="loginForm.get('password')?.invalid">Password is required</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Role</mat-label>
-      <mat-select formControlName="role" required>
-        <mat-option value="admin">Admin</mat-option>
-        <mat-option value="super admin">Super Admin</mat-option>
-        <mat-option value="manager">Manager</mat-option>
-        <mat-option value="employee">Employee</mat-option>
-      </mat-select>
-      <mat-error *ngIf="loginForm.get('role')?.invalid">Role is required</mat-error>
-    </mat-form-field>
+    <div *ngIf="showRole">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="role" required>
+          <mat-option value="admin">Admin</mat-option>
+          <mat-option value="super admin">Super Admin</mat-option>
+          <mat-option value="manager">Manager</mat-option>
+          <mat-option value="employee">Employee</mat-option>
+        </mat-select>
+        <mat-error *ngIf="loginForm.get('role')?.invalid">Role is required</mat-error>
+      </mat-form-field>
+    </div>
 
-    <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+    <button 
+      mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
   </form>
   <p class="signup-link">Don't have an account? <a routerLink="/signup">Go to signup page</a></p>
 </mat-card>
