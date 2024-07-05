@@ -1,12 +1,12 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import { PrismaClient } from '@prisma/client';
-import auth from '../middleware/auth.js';
+
 
 const router = express.Router();
 const prisma = new PrismaClient();
 
-router.post('/employee', auth, async (req, res) => {
+router.post('/employee', async (req, res) => {
   const { firstName, lastName, dob, email, phoneNo, location, username, password, roleId } = req.body;
 
   try {
@@ -35,4 +35,4 @@ router.post('/employee', auth, async (req, res) => {
   }
 });
 
-export default router;
+export  {router as employeeRouter};
