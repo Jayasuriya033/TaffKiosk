@@ -1,17 +1,53 @@
 import express from 'express';
-import bcrypt from 'bcrypt';
 import { PrismaClient } from '@prisma/client';
-
+import bcrypt from 'bcrypt';
 
 const router = express.Router();
 const prisma = new PrismaClient();
 
-router.post('/employee', async (req, res) => {
-  const { firstName, lastName, dob, email, phoneNo, location, username, password, roleId } = req.body;
+// Function to generate a random password
+// function generateRandomPassword(length = 8) {
+//   const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+[]{}|;:,.<>?';
+//   let password = '';
+//   for (let i = 0; i < length; i++) {
+//     const randomIndex = Math.floor(Math.random() * chars.length);
+//     password += chars[randomIndex];
+//   }
+//   return password;
+// }
+
+// Create a new Employee
+router.post('/employees', async (req, res) => {
+  const {
+    firstName,
+    lastName,
+    dob,
+    email,
+    phoneNo,
+    location,
+    username,
+    roleId,
+    createdBy,
+    password 
+  } = req.body;
+
+  // Validate null checks
+  if (!firstName || !lastName || !dob || !email || !phoneNo || !location || !username || !roleId || !createdBy) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
 
   try {
-    // const hashedPassword = await bcrypt.hash(password, 10);
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const formattedUsername = `${username}@taffinc`;
+
+    // Generate a random password if one is not provided
+    let hashedPassword = null;
+    if (password) {
+      // Hash the password
+      hashedPassword = await bcrypt.hash(password, 10);
+    } else {
+      password = "welcome123";
+      hashedPassword = await bcrypt.hash(password, 10);
+    }
 
     const newEmployee = await prisma.employee.create({
       data: {
@@ -21,18 +57,16 @@ router.post('/employee', async (req, res) => {
         email,
         phoneNo,
         location,
-        username,
+        username: formattedUsername,
         password: hashedPassword,
-        roleId,
-        createdBy: req.user.username, 
+        roleId: parseInt(roleId, 10), 
+        createdBy,
       },
     });
-
-    res.status(201).json({ message: 'Employee created successfully', newEmployee });
+    res.status(201).json(newEmployee);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(400).json({ error: error.message });
   }
 });
 
-export  {router as employeeRouter};
+export default router;
