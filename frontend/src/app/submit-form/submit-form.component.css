@@ -1,0 +1,33 @@
+.submit-card {
+    width: 400px; /* Adjust width as needed */
+    margin: auto; /* Center the card horizontally */
+    padding: 20px;
+    text-align: center;
+    background-color: #ffffff; /* Optional: Set background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
+  }
+  
+  .submit-card mat-card-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333333; /* Optional: Adjust title color */
+  }
+  
+  .full-width {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+  }
+  
+  button[type="submit"] {
+    margin-top: 20px;
+  }
+  

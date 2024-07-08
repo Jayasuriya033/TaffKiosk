@@ -1,3 +1,4 @@
+<!-- signup.component.html -->
 <mat-card class="signup-card">
   <mat-card-title style="margin-bottom: 20px;">Sign Up Form</mat-card-title>
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
@@ -15,7 +16,7 @@
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Date of Birth</mat-label>
-      <input matInput [matDatepicker]="picker"[max]="maxDate" formControlName="dob" required>
+      <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="dob" required>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       <mat-error *ngIf="signupForm.get('dob')?.invalid">Date of birth is required</mat-error>
@@ -31,22 +32,17 @@
       <mat-form-field appearance="outline" class="country-code">
         <mat-label>Country Code</mat-label>
         <mat-select formControlName="countryCode" required>
-         
-          <mat-option value="+91">+91 (India)</mat-option>
-          <mat-option value="+1">+1 (USA)</mat-option>
-          <mat-option value="+44">+44 (UK)</mat-option>
-          <mat-option value="+62">+62 (indonaisa)</mat-option>
-
-          <!-- Add more country codes as needed -->
+          <mat-option *ngFor="let country of countryCodes" [value]="country.code">
+            {{ country.code }} ({{ country.country }})
+          </mat-option>
         </mat-select>
         <mat-error *ngIf="signupForm.get('countryCode')?.invalid">Country code is required</mat-error>
       </mat-form-field>
-      <mat-form-field appearance="outline" class="full-width">
+      <mat-form-field appearance="outline" class="phone-number">
         <mat-label>Phone Number</mat-label>
-        <input ngxIntlTelInput [formControl]="phoneNumberControl" [preferredCountries]="preferredCountries" required>
+        <input type="text" matInput formControlName="phoneNumber" required>
         <mat-error *ngIf="signupForm.get('phoneNumber')?.invalid">Phone number is required</mat-error>
       </mat-form-field>
-      
     </div>
 
     <mat-form-field appearance="outline" class="full-width">

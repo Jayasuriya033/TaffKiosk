@@ -1,24 +1,25 @@
+/* login.component.css */
 .login-card {
-  max-width: 600px;
-  margin: 50px auto;
+  max-width: 400px;
+  margin: 0 auto;
   padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .full-width {
   width: 100%;
-  margin-bottom: 15px;
 }
 
 .signup-link {
   text-align: center;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
-.signup-link a {
-  color: #3f51b5;
-  text-decoration: none;
+button {
+  width: 100%;
+  margin-top: 20px;
 }
 
-.signup-link a:hover {
-  text-decoration: underline;
+.mat-form-field {
+  margin-bottom: 16px;
 }
