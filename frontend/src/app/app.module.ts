@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
+// import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,35 +17,42 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { HomeComponent } from './home/home.component';
+import { SubmitFormComponent } from './submit-form/submit-form.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { NgModule } from '@angular/core';
+import { TableComponent } from './table/table.component';
+import { NavigationBarComponent } from "./navigation-bar/navigation-bar.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    LoginComponent,
-    NotFoundComponent,
-    SignupComponent,
-    HomeComponent,
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule, // Make sure BrowserAnimationsModule is imported correctly
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatCardModule,
-    CommonModule,
-  ],
-  providers: [
-    provideAnimationsAsync()
-  ],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        // NavbarComponent,
+        LoginComponent,
+        NotFoundComponent,
+        SignupComponent,
+        HomeComponent,
+        SubmitFormComponent,
+        TableComponent
+    ],
+    providers: [
+        provideAnimationsAsync()
+    ],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule, // Make sure BrowserAnimationsModule is imported correctly
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatButtonModule,
+        MatSelectModule,
+        MatCardModule,
+        CommonModule,
+        NavigationBarComponent
+    ]
 })
 export class AppModule {}
