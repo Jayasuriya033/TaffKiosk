@@ -40,7 +40,7 @@ export class SubmitFormComponent implements OnInit {
   onSubmit() { // Changed method name to onSubmit
     if (this.form.valid) {
       console.log(this.form.value);
-      this.router.navigate(['/home']); // Navigate to the desired route
+      this.router.navigate(['/login']); // Navigate to the desired route
     }
   }
 }

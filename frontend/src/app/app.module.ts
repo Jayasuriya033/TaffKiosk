@@ -23,8 +23,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { TableComponent } from './table/table.component';
 import { NavigationBarComponent } from "./navigation-bar/navigation-bar.component";
+<<<<<<< HEAD
 import { EmployeesTableComponent } from './employees-table/employees-table.component';
 
+=======
+// import { MatButtonModule } from '@angular/material/button';
+// import { MatSelectModule } from '@angular/material/select';
+>>>>>>> 4e477ea66fb6c347156113a86bb9926220677786
 
 @NgModule({
     declarations: [
@@ -57,6 +62,8 @@ import { EmployeesTableComponent } from './employees-table/employees-table.compo
         MatSelectModule,
         MatCardModule,
         CommonModule,
+        MatButtonModule,
+        MatSelectModule,
         NavigationBarComponent
     ]
 })

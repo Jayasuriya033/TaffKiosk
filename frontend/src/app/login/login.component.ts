@@ -1,48 +1,61 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'sunil',
+  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
+  loginForm: FormGroup;
+  error: string | null = null;
   showRole: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {}
-
-  ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {
+    this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
       role: ['', Validators.required]
     });
+  }
 
-    // Subscribe to value changes of username and password fields
+  ngOnInit(): void {
     this.loginForm.get('username')?.valueChanges.subscribe(() => {
-      this.updateRoleVisibility();
+      this.toggleRoleField();
     });
+
     this.loginForm.get('password')?.valueChanges.subscribe(() => {
-      this.updateRoleVisibility();
+      this.toggleRoleField();
     });
   }
 
-  updateRoleVisibility(): void {
+  toggleRoleField(): void {
     const username = this.loginForm.get('username')?.value;
     const password = this.loginForm.get('password')?.value;
-    this.showRole = !!username && !!password; // Show role if both fields have data
+    this.showRole = !!username && !!password;
+    if (!this.showRole) {
+      this.loginForm.get('role')?.reset();
+    }
   }
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
-
-      // Perform login logic here, e.g., send the form data to the server
-      
-      // Redirect to the desired page after successful login
-      this.router.navigate(['/signup']); // or another route
+      // Simulate a successful login
+      this.snackBar.open('Login Successful', 'Close', {
+        duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center'
+      });
+      // Redirect to the homepage
+      this.router.navigate(['/home']);
+    } else {
+      this.error = 'Please fill in all required fields.';
     }
   }
 }

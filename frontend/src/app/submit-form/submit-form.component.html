@@ -1,5 +1,6 @@
-<!-- <p>submit-form works!</p> -->
-<mat-card class="submit-card">
+<!-- submit-form.component.html -->
+<div class="submit-page">
+  <mat-card class="submit-card">
     <title>Submit Form</title>
     <mat-card-title style="margin-bottom: 20px; text-align: center;">Submit Form</mat-card-title>
     <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -24,7 +25,5 @@
   
       <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
     </form>
-  
-    <!-- <p class="signup-link">Don't have an account? <a routerLink="/signup">Go to signup page</a></p> -->
   </mat-card>
-  
+</div>

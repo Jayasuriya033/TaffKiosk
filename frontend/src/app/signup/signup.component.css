@@ -1,24 +1,48 @@
-.signup-card {
-  max-width: 600px;
-  margin: 50px auto;
+/* signup.component.css */
+.signup-page {
+  height: 100vh;
+  background-image: url('https://png.pngtree.com/background/20210710/original/pngtree-gourmet-japanese-restaurant-sushi-creative-simple-business-poster-design-picture-image_1016307.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
+  box-sizing: border-box;
+}
+
+.signup-card {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mat-card-title {
+  text-align: center;
 }
 
 .full-width {
   width: 100%;
-  margin-bottom: 15px;
+}
+
+.phone-number-container {
+  display: flex;
+  gap: 10px;
+}
+
+.country-code {
+  flex: 1;
+}
+
+.phone-number {
+  flex: 2;
 }
 
 .login-link {
   text-align: center;
-  margin-top: 15px;
-}
-
-.login-link a {
-  color: #3f51b5;
-  text-decoration: none;
-}
-
-.login-link a:hover {
-  text-decoration: underline;
+  margin-top: 10px;
 }

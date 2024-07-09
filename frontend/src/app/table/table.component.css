@@ -1,21 +1,22 @@
-
-table{
+table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-    border: black;
-
+    background-image: url('https://pngtree.com/freebackground/vector-illustration-of-a-restaurant-menu-design-with-food-and-drinks-showcasing-textured-paper-background_15276281.html');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid black;
 }
 
-th, td{
-    border: 1px;
+th, td {
+    border: 1px solid black;
     padding: 8px;
-    text-align:left;
-
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for readability */
 }
 
-th{
-    background-color: #8d8888;
+th {
+    background-color: rgba(141, 136, 136, 0.9); /* Semi-transparent background for header */
     color: #441010;
-    
 }
