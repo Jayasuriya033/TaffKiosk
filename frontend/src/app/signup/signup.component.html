@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <mat-card class="signup-card">
   <mat-card-title style="margin-bottom: 20px;">Sign Up Form</mat-card-title>
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
@@ -18,7 +18,7 @@
       <input matInput formControlName="username" required>
       <mat-error *ngIf="signupForm.get('username')?.invalid">User Name is required</mat-error>
     </mat-form-field>
-=======
+
 <!-- signup.component.html -->
 <div class="signup-page">
   <mat-card class="signup-card">
@@ -35,7 +35,7 @@
         <input matInput formControlName="lastName" required>
         <mat-error *ngIf="signupForm.get('lastName')?.invalid">Last name is required</mat-error>
       </mat-form-field>
->>>>>>> 4e477ea66fb6c347156113a86bb9926220677786
+
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Date of Birth</mat-label>
@@ -84,15 +84,14 @@
         </mat-select>
         <mat-error *ngIf="signupForm.get('role')?.invalid">Role is required</mat-error>
       </mat-form-field>
-<<<<<<< HEAD
+
       <mat-form-field appearance="outline" class="phone-number">
         <mat-label>Phone Number</mat-label>
         <input type="text" matInput formControlName="phoneNo" required>
         <mat-error *ngIf="signupForm.get('phoneNo')?.invalid">Phone number is required</mat-error>
       </mat-form-field>
     </div>
-=======
->>>>>>> 4e477ea66fb6c347156113a86bb9926220677786
+
 
       <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid">Sign Up</button>
     </form>
