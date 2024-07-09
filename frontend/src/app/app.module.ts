@@ -22,6 +22,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { NgModule } from '@angular/core';
 import { TableComponent } from './table/table.component';
 import { NavigationBarComponent } from "./navigation-bar/navigation-bar.component";
+// import { MatButtonModule } from '@angular/material/button';
+// import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     declarations: [
@@ -52,6 +54,8 @@ import { NavigationBarComponent } from "./navigation-bar/navigation-bar.componen
         MatSelectModule,
         MatCardModule,
         CommonModule,
+        MatButtonModule,
+        MatSelectModule,
         NavigationBarComponent
     ]
 })

@@ -1,25 +1,43 @@
-/* login.component.css */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('https://png.pngtree.com/background/20210710/original/pngtree-gourmet-japanese-restaurant-sushi-creative-simple-business-poster-design-picture-image_1016307.jpg');
+  background-size: cover;
+  padding-left: 10px;
+}
+
 .login-card {
   max-width: 400px;
-  margin: 0 auto;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
 }
 
 .full-width {
   width: 100%;
 }
 
-.signup-link {
+.centered {
   text-align: center;
-  margin-top: 20px;
-}
-
-button {
-  width: 100%;
-  margin-top: 20px;
 }
 
 .mat-form-field {
-  margin-bottom: 16px;
+  margin-bottom: 15px;
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.signup-link a {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
 }
