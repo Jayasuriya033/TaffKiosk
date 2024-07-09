@@ -19,9 +19,12 @@ import { MatCardModule } from '@angular/material/card';
 import { HomeComponent } from './home/home.component';
 import { SubmitFormComponent } from './submit-form/submit-form.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { TableComponent } from './table/table.component';
 import { NavigationBarComponent } from "./navigation-bar/navigation-bar.component";
+import { EmployeesTableComponent } from './employees-table/employees-table.component';
+
 
 @NgModule({
     declarations: [
@@ -32,7 +35,8 @@ import { NavigationBarComponent } from "./navigation-bar/navigation-bar.componen
         SignupComponent,
         HomeComponent,
         SubmitFormComponent,
-        TableComponent
+        TableComponent,
+        EmployeesTableComponent
     ],
     providers: [
         provideAnimationsAsync()
@@ -44,6 +48,7 @@ import { NavigationBarComponent } from "./navigation-bar/navigation-bar.componen
         AppRoutingModule,
         FormsModule,
         ReactiveFormsModule,
+        HttpClientModule,
         MatInputModule,
         MatFormFieldModule,
         MatDatepickerModule,

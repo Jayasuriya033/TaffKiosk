@@ -3,12 +3,14 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import router from './routes/router.js';
 
+
+
 const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use('/api', router);
+app.use('/', router);
 
 const port = 3000;
 app.listen(port, () => {

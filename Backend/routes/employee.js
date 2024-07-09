@@ -180,6 +180,10 @@ router.post('/', async (req, res) => {
     password
   } = req.body;
 
+
+
+
+
   // Validate null checks
   if (!firstName || !lastName || !dob || !email || !phoneNo || !location || !username || !roleId || !createdBy) {
     return res.status(400).json({ error: 'All fields are required' });
@@ -230,5 +234,20 @@ router.post('/', async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
+
+
+
+// Get all Employees
+router.get('/', async (req, res) => {
+  try {
+    const employees = await prisma.employee.findMany();
+    res.status(200).json(employees);
+  } catch (error) {
+    console.error('Error fetching employees:', error);
+    res.status(400).json({ error: error.message });
+  }
+});
+
+
 
 export default router;
