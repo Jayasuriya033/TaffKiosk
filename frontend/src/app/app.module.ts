@@ -23,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { TableComponent } from './table/table.component';
 import { NavigationBarComponent } from "./navigation-bar/navigation-bar.component";
-import { EmployeesTableComponent } from './employees-table/employees-table.component';
+// import { EmployeesTableComponent } from './employees-table/employees-table.component';
 
 // import { MatButtonModule } from '@angular/material/button';
 // import { MatSelectModule } from '@angular/material/select'
@@ -38,7 +38,7 @@ import { EmployeesTableComponent } from './employees-table/employees-table.compo
         HomeComponent,
         SubmitFormComponent,
         TableComponent,
-        EmployeesTableComponent
+        // EmployeesTableCompon ent
     ],
     providers: [
         provideAnimationsAsync()

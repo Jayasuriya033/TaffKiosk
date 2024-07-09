@@ -1,115 +1,60 @@
-
-<mat-card class="signup-card">
-  <mat-card-title style="margin-bottom: 20px;">Sign Up Form</mat-card-title>
+<div class="signup-container">
+  <h2 class="form-title">Sign Up Form</h2>
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>First Name</mat-label>
-      <input matInput formControlName="firstName" required>
-      <mat-error *ngIf="signupForm.get('firstName')?.invalid">First name is required</mat-error>
-    </mat-form-field>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input id="firstName" formControlName="firstName" placeholder="First Name">
+    </div>
 
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Last Name</mat-label>
-      <input matInput formControlName="lastName" required>
-      <mat-error *ngIf="signupForm.get('lastName')?.invalid">Last name is required</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>User Name</mat-label>
-      <input matInput formControlName="username" required>
-      <mat-error *ngIf="signupForm.get('username')?.invalid">User Name is required</mat-error>
-    </mat-form-field>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input id="lastName" formControlName="lastName" placeholder="Last Name">
+    </div>
+    
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input id="username" formControlName="username" placeholder="Username">
+    </div>
 
-<!-- signup.component.html -->
-<div class="signup-page">
-  <mat-card class="signup-card">
-    <mat-card-title style="margin-bottom: 20px;">Sign Up Form</mat-card-title>
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>First Name</mat-label>
-        <input matInput formControlName="firstName" required>
-        <mat-error *ngIf="signupForm.get('firstName')?.invalid">First name is required</mat-error>
-      </mat-form-field>
+    <div class="form-group">
+      <label for="dob">Date of Birth</label>
+      <input id="dob" formControlName="dob" placeholder="Date of Birth" type="date" [max]="maxDate | date:'yyyy-MM-dd'">
+    </div>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Last Name</mat-label>
-        <input matInput formControlName="lastName" required>
-        <mat-error *ngIf="signupForm.get('lastName')?.invalid">Last name is required</mat-error>
-      </mat-form-field>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" placeholder="Email" type="email">
+    </div>
 
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Date of Birth</mat-label>
-        <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="dob" required>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="signupForm.get('dob')?.invalid">Date of birth is required</mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" required>
-        <mat-error *ngIf="signupForm.get('email')?.invalid">Valid email is required</mat-error>
-      </mat-form-field>
-
-      <div class="phone-number-container">
-        <mat-form-field appearance="outline" class="country-code">
-          <mat-label>Country Code</mat-label>
-          <mat-select formControlName="countryCode" required>
-            <mat-option *ngFor="let country of countryCodes" [value]="country.code">
-              {{ country.code }} ({{ country.country }})
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="signupForm.get('countryCode')?.invalid">Country code is required</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="phone-number">
-          <mat-label>Phone Number</mat-label>
-          <input type="text" matInput formControlName="phoneNumber" required>
-          <mat-error *ngIf="signupForm.get('phoneNumber')?.invalid">Phone number is required</mat-error>
-        </mat-form-field>
+    <div class="form-group-inline">
+      <div class="form-group">
+        <label for="countryCode">Country Code</label>
+        <select id="countryCode" formControlName="countryCode">
+          <option *ngFor="let code of countryCodes" [value]="code.code">{{ code.country }} ({{ code.code }})</option>
+        </select>
       </div>
+      <div class="form-group">
+        <label for="phoneNo">Phone Number</label>
+        <input id="phoneNo" formControlName="phoneNo" placeholder="Phone Number">
+      </div>
+    </div>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Location</mat-label>
-        <input matInput formControlName="location" required>
-        <mat-error *ngIf="signupForm.get('location')?.invalid">Location is required</mat-error>
-      </mat-form-field>
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input id="location" formControlName="location" placeholder="Location">
+    </div>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Role</mat-label>
-        <mat-select formControlName="role" required>
-          <mat-option value="admin">Admin</mat-option>
-          <mat-option value="super admin">Super Admin</mat-option>
-          <mat-option value="manager">Manager</mat-option>
-          <mat-option value="employee">Employee</mat-option>
-        </mat-select>
-        <mat-error *ngIf="signupForm.get('role')?.invalid">Role is required</mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="phone-number">
-        <mat-label>Phone Number</mat-label>
-        <input type="text" matInput formControlName="phoneNo" required>
-        <mat-error *ngIf="signupForm.get('phoneNo')?.invalid">Phone number is required</mat-error>
-      </mat-form-field>
+    <div class="form-group">
+      <label for="role">Role</label>
+      <select id="role" formControlName="role">
+        <option value="admin">Admin</option>
+        <option value="super admin">Super Admin</option>
+        <option value="manager">Manager</option>
+        <option value="employee">Employee</option>
+      </select>
     </div>
 
 
-      <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid">Sign Up</button>
-    </form>
-    <p class="login-link">Already have an account? <a routerLink="/">Go to login page</a></p>
-  </mat-card>
+    <button type="submit" [disabled]="!signupForm.valid">Sign Up</button>
+  </form>
 </div>
-
-<style>
-  .phone-number-container {
-    display: flex;
-    gap: 10px;
-  }
-
-  .country-code {
-    flex: 1;
-  }
-
-  .phone-number {
-    flex: 2;
-  }
-</style>
