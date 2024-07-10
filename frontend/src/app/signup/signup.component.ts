@@ -46,7 +46,7 @@ export class SignupComponent {
         response => {
           console.log('User registered successfully', response);
           // Navigate to the submit-form route after successful form submission
-          this.router.navigate(['/submit-form']);
+          this.router.navigate(['/']);
         },
         error => {
           console.error('Error registering user', error);

@@ -1,60 +1,64 @@
 <div class="signup-container">
   <h2 class="form-title">Sign Up Form</h2>
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input id="firstName" formControlName="firstName" placeholder="First Name">
-    </div>
+    <mat-form-field class="full-width">
+      <mat-label>First Name</mat-label>
+      <input matInput id="firstName" formControlName="firstName" placeholder="First Name">
+    </mat-form-field>
 
-    <div class="form-group">
-      <label for="lastName">Last Name</label>
-      <input id="lastName" formControlName="lastName" placeholder="Last Name">
-    </div>
-    
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input id="username" formControlName="username" placeholder="Username">
-    </div>
+    <mat-form-field class="full-width">
+      <mat-label>Last Name</mat-label>
+      <input matInput id="lastName" formControlName="lastName" placeholder="Last Name">
+    </mat-form-field>
 
-    <div class="form-group">
-      <label for="dob">Date of Birth</label>
-      <input id="dob" formControlName="dob" placeholder="Date of Birth" type="date" [max]="maxDate | date:'yyyy-MM-dd'">
-    </div>
+    <mat-form-field class="full-width">
+      <mat-label>Username</mat-label>
+      <input matInput id="username" formControlName="username" placeholder="Username">
+    </mat-form-field>
 
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input id="email" formControlName="email" placeholder="Email" type="email">
-    </div>
+    <mat-form-field class="full-width">
+      <mat-label>Date of Birth</mat-label>
+      <input matInput id="dob" formControlName="dob" [matDatepicker]="picker" placeholder="Date of Birth">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput id="email" formControlName="email" placeholder="Email" type="email">
+    </mat-form-field>
 
     <div class="form-group-inline">
-      <div class="form-group">
-        <label for="countryCode">Country Code</label>
-        <select id="countryCode" formControlName="countryCode">
-          <option *ngFor="let code of countryCodes" [value]="code.code">{{ code.country }} ({{ code.code }})</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="phoneNo">Phone Number</label>
-        <input id="phoneNo" formControlName="phoneNo" placeholder="Phone Number">
-      </div>
+      <mat-form-field class="half-width">
+        <mat-label>Country Code</mat-label>
+        <mat-select id="countryCode" formControlName="countryCode">
+          <mat-option *ngFor="let code of countryCodes" [value]="code.code">
+            {{ code.country }} ({{ code.code }})
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field class="half-width">
+        <mat-label>Phone Number</mat-label>
+        <input matInput id="phoneNo" formControlName="phoneNo" placeholder="Phone Number">
+      </mat-form-field>
     </div>
 
-    <div class="form-group">
-      <label for="location">Location</label>
-      <input id="location" formControlName="location" placeholder="Location">
-    </div>
+    <mat-form-field class="full-width">
+      <mat-label>Location</mat-label>
+      <input matInput id="location" formControlName="location" placeholder="Location">
+    </mat-form-field>
 
-    <div class="form-group">
-      <label for="role">Role</label>
-      <select id="role" formControlName="role">
-        <option value="admin">Admin</option>
-        <option value="super admin">Super Admin</option>
-        <option value="manager">Manager</option>
-        <option value="employee">Employee</option>
-      </select>
-    </div>
+    <mat-form-field class="full-width">
+      <mat-label>Role</mat-label>
+      <mat-select id="role" formControlName="role">
+        <mat-option value="admin">Admin</mat-option>
+        <mat-option value="super admin">Super Admin</mat-option>
+        <mat-option value="manager">Manager</mat-option>
+        <mat-option value="employee">Employee</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-
-    <button type="submit" [disabled]="!signupForm.valid">Sign Up</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid">Sign Up</button>
   </form>
 </div>

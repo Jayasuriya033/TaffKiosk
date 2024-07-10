@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { TableComponent } from './table/table.component';
 import { NavigationBarComponent } from "./navigation-bar/navigation-bar.component";
+import { EmployeeService } from './employee.service';
 // import { EmployeesTableComponent } from './employees-table/employees-table.component';
 
 // import { MatButtonModule } from '@angular/material/button';
@@ -40,9 +41,7 @@ import { NavigationBarComponent } from "./navigation-bar/navigation-bar.componen
         TableComponent,
         // EmployeesTableCompon ent
     ],
-    providers: [
-        provideAnimationsAsync()
-    ],
+    providers: [EmployeeService],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,
@@ -64,4 +63,4 @@ import { NavigationBarComponent } from "./navigation-bar/navigation-bar.componen
         NavigationBarComponent
     ]
 })
-export class AppModule {}
+export class AppModule { }
