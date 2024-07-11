@@ -3,30 +3,35 @@
     <mat-card-title class="centered" style="margin-bottom: 20px;">Login Form</mat-card-title>
     <p *ngIf="error">{{ error }}</p>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="outline" class="full-width">
+
+      <mat-form-field class="full-width">
         <mat-label>Username</mat-label>
-        <input matInput formControlName="username" required>
-        <mat-error *ngIf="loginForm.get('username')?.invalid">Username is required</mat-error>
+        <input matInput id="username" formControlName="username" placeholder="Username">
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width">
+      <mat-form-field class="full-width">
         <mat-label>Password</mat-label>
         <input matInput type="password" formControlName="password" required>
         <mat-error *ngIf="loginForm.get('password')?.invalid">Password is required</mat-error>
       </mat-form-field>
 
+      <!-- Forgot Password Link -->
+      <div class="forgot-password-link">
+        <a routerLink="/forgot-password">Forgot Password?</a>
+      </div> <br>
+
       <div *ngIf="showRole">
-        <mat-form-field appearance="outline" class="full-width">
+        <mat-form-field class="full-width">
           <mat-label>Role</mat-label>
-          <mat-select formControlName="role">
+          <mat-select id="role" formControlName="role">
             <mat-option value="admin">Admin</mat-option>
             <mat-option value="super admin">Super Admin</mat-option>
+            <mat-option value="warehouse admin">Warehouse Admin</mat-option>
             <mat-option value="manager">Manager</mat-option>
             <mat-option value="employee">Employee</mat-option>
           </mat-select>
-          <mat-error *ngIf="loginForm.get('role')?.invalid">Role is required</mat-error>
         </mat-form-field>
-      </div> 
+      </div>
 
       <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" class="full-width">Login</button>
     </form>

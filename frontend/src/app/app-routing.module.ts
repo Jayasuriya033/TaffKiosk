@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { SubmitFormComponent } from './submit-form/submit-form.component';
 import { TableComponent } from './table/table.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'submit-form', component: SubmitFormComponent },
   { path: 'user',component:TableComponent},
+  { path: 'forgot-password', component: ChangePasswordComponent },
 
   // { path: 'user',component:TableComponent},
   { path: 'navigation-bar',component:NavigationBarComponent},

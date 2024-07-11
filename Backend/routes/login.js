@@ -1,3 +1,5 @@
+
+
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
@@ -26,6 +28,7 @@ router.post('/', async (req, res) => {
     }
 
     console.log('User found:', user);
+
 
     const passwordMatch = await bcrypt.compare(password, user.password);
 
