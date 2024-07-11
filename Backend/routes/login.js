@@ -1,32 +1,46 @@
-// import express from 'express';
-// import bcrypt from 'bcrypt';
-// import { PrismaClient } from '@prisma/client';
+import express from 'express';
+import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcrypt';
 
-// const router = express.Router();
-// const prisma = new PrismaClient();
+const router = express.Router();
+const prisma = new PrismaClient();
 
-// router.post('/login', async (req, res) => {
-//   const { username, password, role } = req.body;
+// Login route
+router.post('/', async (req, res) => {
+  const { username, password } = req.body;
 
-//   try {
-//     const user = await prisma.user.findUnique({
-//       where: { username },
-//     });
+  // Validate null checks
+  if (!username || !password) {
+    return res.status(400).json({ error: 'Username and password are required' });
+  }
 
-//     if (!user || user.role !== role) {
-//       return res.status(401).json({ error: 'Invalid credentials' });
-//     }
+  try {
+    console.log('Attempting to find user:', username);
+    const user = await prisma.employee.findUnique({
+      where: { username },
+    });
 
-//     const isPasswordValid = await bcrypt.compare(password, user.password);
-//     if (!isPasswordValid) {
-//       return res.status(401).json({ error: 'Invalid credentials' });
-//     }
+    if (!user) {
+      console.log('User not found');
+      return res.status(401).json({ error: 'Invalid username or password' });
+    }
 
-//     res.status(200).json({ message: 'Login successful', user });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Internal server error' });
-//   }
-// });
+    console.log('User found:', user);
 
-// export  {router as loginRouter};
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      console.log('Password does not match');
+      return res.status(401).json({ error: 'Invalid username or password' });
+    }
+
+    console.log('Password matches');
+
+    res.json({ message: 'Successfully logged in' });
+  } catch (error) {
+    console.error('Error logging in:', error);
+    res.status(500).json({ error: 'An error occurred while logging in' });
+  }
+});
+
+export default router;
