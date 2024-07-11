@@ -10,18 +10,23 @@ import { EmployeeService } from '../employee.service';
 
 export class TableComponent implements OnInit {
   employees: any[] = [];
-  constructor(private employeeService: EmployeeService) {}
+  constructor(private employeeService: EmployeeService) {
+  }
 
+  
   ngOnInit(): void {
     this.fetchEmployees();
+
+   
+
 
 }
 
 
 fetchEmployees(): void {
   this.employeeService.getEmployees().subscribe(
-    (data) => {
-      this.employees = data;
+    ( res) => {
+      this.employees = res;
     },
     (error) => {
       console.error('Error fetching employees:', error);

@@ -24,6 +24,8 @@ import { NgModule } from '@angular/core';
 import { TableComponent } from './table/table.component';
 import { NavigationBarComponent } from "./navigation-bar/navigation-bar.component";
 import { EmployeeService } from './employee.service';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 // import { EmployeesTableComponent } from './employees-table/employees-table.component';
 
 // import { MatButtonModule } from '@angular/material/button';
@@ -39,6 +41,7 @@ import { EmployeeService } from './employee.service';
         HomeComponent,
         SubmitFormComponent,
         TableComponent,
+        ChangePasswordComponent,
         // EmployeesTableCompon ent
     ],
     providers: [EmployeeService],
@@ -60,7 +63,8 @@ import { EmployeeService } from './employee.service';
         CommonModule,
         MatButtonModule,
         MatSelectModule,
-        NavigationBarComponent
+        NavigationBarComponent, 
+        NgxIntlTelInputModule,
     ]
 })
 export class AppModule { }

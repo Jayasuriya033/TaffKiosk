@@ -1,8 +1,8 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: url('/TaffKiosk/frontend/src/assets/tafliosk\ baground\ image.jpg ');
-  background-size: cover;
+  background: url('https://png.pngtree.com/background/20210710/original/pngtree-gourmet-japanese-restaurant-sushi-creative-simple-business-poster-design-picture-image_1016307.jpg') no-repeat center center fixed; 
+  background-size: cover; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,11 +11,12 @@ body {
 
 .signup-container {
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
   padding: 25px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(213, 203, 214, 0.9);
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 15px rgba(204, 190, 190, 0.3);
+  box-sizing: border-box;
 }
 
 .form-title {
@@ -31,11 +32,13 @@ body {
 
 .half-width {
   width: calc(50% - 10px);
-  margin-right: 10px;
 }
 
 .form-group-inline {
   display: flex;
   justify-content: space-between;
+}
+
+.form-group-inline .half-width {
   margin-bottom: 15px;
 }
