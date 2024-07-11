@@ -1,8 +1,7 @@
-
-
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
+import { sendSignupEmail } from '../utility/email.js';
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -16,6 +15,29 @@ function generateRandomPassword(length = 8) {
     password += chars[randomIndex];
   }
   return password;
+}
+
+
+// Function to calculate age from DOB
+
+function calculateAge(dob) {
+  const today = new Date();
+  const birthDate = new Date(dob);
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDifference = today.getMonth() - birthDate.getMonth();
+
+  if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+}
+
+return age;
+}
+
+// Function to generate a username
+function generateUsername(firstName, lastName) {
+  const cleanFirstName = firstName.replace(/\s+/g, '').toLowerCase();
+  const cleanLastName = lastName.replace(/\s+/g, '').toLowerCase();
+  return `${cleanFirstName}.${cleanLastName}@taffinc`;
 }
 
 // Create a new Employee
@@ -34,19 +56,25 @@ router.post('/', async (req, res) => {
   } = req.body;
 
 
+  
 
-
-
-  // Validate null checks
-  if (!firstName || !lastName || !dob || !email || !phoneNo || !location || !username || !roleId || !createdBy) {
+   // Validate null checks
+   if (!firstName || !lastName || !dob || !email || !phoneNo || !location || !roleId || !createdBy) {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
   try {
-    // Format the username
-    const formattedUsername = `${username}@taffinc`;
+    
+    // Generate the username if not provided
+    const formattedUsername = username ? `${username}@taffinc` : generateUsername(firstName, lastName);
 
-
+    
+    
+    // Validate age
+    const age = calculateAge(dob);
+    if (age < 18) {
+    return res.status(400).json({ error: 'Employee must be at least 18 years old' });
+  }
     
 
     // Generate a random password if one is not provided
@@ -75,6 +103,11 @@ router.post('/', async (req, res) => {
       },
     });
 
+
+    // Send the signup email
+    await sendSignupEmail(email, formattedUsername, generatedPassword || password);
+
+
     // If password was generated, include it in the response (not recommended for production)
     const response = {
       ...newEmployee,
@@ -101,6 +134,22 @@ router.get('/', async (req, res) => {
   }
 });
 
+
+//delete request for unique selecting id
+ router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedEmployee = await prisma.employee.delete({
+      where: { id: parseInt(id, 10) },
+    });
+
+    res.status(200).json({ message: 'Employee deleted successfully', deletedEmployee });
+  } catch (error) {
+    console.error('Error deleting employee:', error);
+    res.status(400).json({ error: error.message });
+  }
+});
 
 
 export default router;

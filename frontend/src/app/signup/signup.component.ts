@@ -34,7 +34,6 @@ export class SignupComponent {
       phoneNo: ['', Validators.required],
       location: ['', Validators.required],
       role: ['', Validators.required],
-      username: ['', Validators.required],
       createdBy: ['Self-creating'],
       roleId: [1],
     });
