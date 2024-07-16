@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NgxIntlTelInputComponent } from 'ngx-intl-tel-input';
+NgxIntlTelInputComponent
 
 @Component({
   selector: 'app-root',

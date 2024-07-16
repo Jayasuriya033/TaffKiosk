@@ -26,7 +26,7 @@
     "@types/intl-tel-input": "^18.1.4",
     "express": "^4.18.2",
     "intl-tel-input": "^23.3.0",
-    "ngx-intl-tel-input": "^3.2.0",
+    "ngx-intl-tel-input": "^3.1.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

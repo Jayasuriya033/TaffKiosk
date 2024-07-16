@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Ensure this import is correct
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';  
+// import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-// import { NavbarComponent } from './navbar/navbar.component';
+// import { NgxIntlTelInputModule};
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,10 +27,7 @@ import { NavigationBarComponent } from "./navigation-bar/navigation-bar.componen
 import { EmployeeService } from './employee.service';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-// import { EmployeesTableComponent } from './employees-table/employees-table.component';
 
-// import { MatButtonModule } from '@angular/material/button';
-// import { MatSelectModule } from '@angular/material/select'
 
 @NgModule({
     declarations: [
@@ -42,13 +40,13 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
         SubmitFormComponent,
         TableComponent,
         ChangePasswordComponent,
-        // EmployeesTableCompon ent
+      
     ],
     providers: [EmployeeService],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,
-        BrowserAnimationsModule, // Make sure BrowserAnimationsModule is imported correctly
+        BrowserAnimationsModule, 
         AppRoutingModule,
         FormsModule,
         ReactiveFormsModule,
@@ -65,6 +63,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
         MatSelectModule,
         NavigationBarComponent, 
         NgxIntlTelInputModule,
+        
     ]
 })
 export class AppModule { }

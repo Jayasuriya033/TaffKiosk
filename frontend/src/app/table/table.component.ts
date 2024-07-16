@@ -18,11 +18,7 @@ export class TableComponent implements OnInit {
     this.fetchEmployees();
 
    
-
-
 }
-
-
 fetchEmployees(): void {
   this.employeeService.getEmployees().subscribe(
     ( res) => {

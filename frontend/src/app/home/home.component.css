@@ -1,8 +1,8 @@
-/* home.component.css */
+
 .home-container {
   height: 100vh;
   background-image: url('https://png.pngtree.com/background/20210710/original/pngtree-gourmet-japanese-restaurant-sushi-creative-simple-business-poster-design-picture-image_1016307.jpg');
-   /* Replace with your image URL */
+   
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -10,11 +10,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white; /* Adjust as needed */
+  color: white; 
   text-align: center;
 }
 
 h1 {
   margin: 0;
-  font-size: 4em; /* Adjust as needed */
+  font-size: 4em; 
 }

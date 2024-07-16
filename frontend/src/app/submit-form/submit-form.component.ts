@@ -1,29 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-submit-form',
   templateUrl: './submit-form.component.html',
-  styleUrls: ['./submit-form.component.css'], // Changed 'styleUrl' to 'styleUrls'
+  styleUrls: ['./submit-form.component.css'], 
 })
 export class SubmitFormComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) { // Inject the Router here
+  constructor(private fb: FormBuilder, private router: Router) { 
     this.form = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required]
     }, {
-      validator: this.passwordMatchValidator // Corrected 'Validators' to 'validator'
+      validator: this.passwordMatchValidator
     });
   }
 
   ngOnInit(): void {
-    // Initialization logic can go here if needed
+    
   }
 
   passwordMatchValidator(control: AbstractControl) {
@@ -37,10 +37,10 @@ export class SubmitFormComponent implements OnInit {
     }
   }
 
-  onSubmit() { // Changed method name to onSubmit
+  onSubmit() { 
     if (this.form.valid) {
       console.log(this.form.value);
-      this.router.navigate(['/login']); // Navigate to the desired route
+      this.router.navigate(['/login']); 
     }
   }
 }
