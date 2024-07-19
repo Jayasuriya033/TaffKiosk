@@ -15,27 +15,14 @@
         <mat-error *ngIf="loginForm.get('password')?.invalid">Password is required</mat-error>
       </mat-form-field>
 
-      <!-- Forgot Password Link -->
       <div class="forgot-password-link">
         <a routerLink="/forgot-password">Forgot Password?</a>
       </div> <br>
 
-      <div *ngIf="showRole">
-        <mat-form-field class="full-width">
-          <mat-label>Role</mat-label>
-          <mat-select id="role" formControlName="role">
-            <mat-option value="admin">Admin</mat-option>
-            <mat-option value="super admin">Super Admin</mat-option>
-            <mat-option value="warehouse admin">Warehouse Admin</mat-option>
-            <mat-option value="manager">Manager</mat-option>
-            <mat-option value="employee">Employee</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
+     
       <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" class="full-width">Login</button>
     </form>
-    <p class="signup-link">Don't have an account? <a routerLink="/signup">Go to signup page</a></p>
+    <!-- <p class="signup-link">Don't have an account? <a routerLink="/signup">Go to signup page</a></p> -->
   </mat-card>
 </div>
 

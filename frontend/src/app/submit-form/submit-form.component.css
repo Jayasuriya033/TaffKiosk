@@ -1,4 +1,3 @@
-/* submit-form.component.css */
 .submit-page {
   height: 100vh;
   background-image: url('https://png.pngtree.com/background/20210710/original/pngtree-gourmet-japanese-restaurant-sushi-creative-simple-business-poster-design-picture-image_1016307.jpg');
@@ -15,7 +14,7 @@
 .submit-card {
   width: 100%;
   max-width: 500px;
-  background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  background: rgba(255, 255, 255, 0.9); 
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

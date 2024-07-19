@@ -2,11 +2,11 @@ import express from 'express';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import { sendSignupEmail } from '../utility/email.js';
+import { verifyEmployee } from './auth.js';
 
 const router = express.Router();
 const prisma = new PrismaClient();
 
-// Function to generate a random password
 function generateRandomPassword(length = 8) {
   const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+[]{}|;:,.<>?';
   let password = '';
@@ -18,7 +18,6 @@ function generateRandomPassword(length = 8) {
 }
 
 
-// Function to calculate age from DOB
 
 function calculateAge(dob) {
   const today = new Date();
@@ -33,15 +32,13 @@ function calculateAge(dob) {
 return age;
 }
 
-// Function to generate a username
 function generateUsername(firstName, lastName) {
   const cleanFirstName = firstName.replace(/\s+/g, '').toLowerCase();
   const cleanLastName = lastName.replace(/\s+/g, '').toLowerCase();
   return `${cleanFirstName}.${cleanLastName}@taffinc`;
 }
 
-// Create a new Employee
-router.post('/', async (req, res) => {
+router.post('/',async (req, res) => {
   const {
     firstName,
     lastName,
@@ -58,30 +55,25 @@ router.post('/', async (req, res) => {
 
   
 
-   // Validate null checks
    if (!firstName || !lastName || !dob || !email || !phoneNo || !location || !roleId || !createdBy) {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
   try {
     
-    // Generate the username if not provided
     const formattedUsername = username ? `${username}@taffinc` : generateUsername(firstName, lastName);
 
     
     
-    // Validate age
     const age = calculateAge(dob);
     if (age < 18) {
     return res.status(400).json({ error: 'Employee must be at least 18 years old' });
   }
     
 
-    // Generate a random password if one is not provided
     let hashedPassword = null;
     let generatedPassword = null;
     if (password) {
-      // Hash the password
       hashedPassword = await bcrypt.hash(password, 10);
     } else {
       generatedPassword = generateRandomPassword();
@@ -103,12 +95,12 @@ router.post('/', async (req, res) => {
       },
     });
 
+console.log("password  "+password);
 
-    // Send the signup email
+
     await sendSignupEmail(email, formattedUsername, generatedPassword || password);
 
 
-    // If password was generated, include it in the response (not recommended for production)
     const response = {
       ...newEmployee,
       generatedPassword: generatedPassword ? generatedPassword : undefined
@@ -123,7 +115,6 @@ router.post('/', async (req, res) => {
 
 
 
-// Get all Employees
 router.get('/', async (req, res) => {
   try {
     const employees = await prisma.employee.findMany();
@@ -135,7 +126,6 @@ router.get('/', async (req, res) => {
 });
 
 
-//delete request for unique selecting id
  router.delete('/:id', async (req, res) => {
   const { id } = req.params;
 

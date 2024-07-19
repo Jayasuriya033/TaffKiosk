@@ -1,17 +1,13 @@
+
+
 import { Component } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { Router } from 'express';
+import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navigation-bar.component.html',
-  styleUrl: './navigation-bar.component.css',
+  styleUrls: ['./navigation-bar.component.css'],
   standalone: true,
-  imports:[RouterModule]
-
+  imports: [RouterModule]
 })
-export class NavigationBarComponent {
-
-  constructor() {
-
-  }
-}
+export class NavigationBarComponent { }

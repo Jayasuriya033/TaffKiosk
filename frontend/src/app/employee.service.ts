@@ -19,8 +19,7 @@ interface Employee {
   providedIn: 'root',
 })
 export class EmployeeService {
-  private apiUrl = 'http://localhost:3000/api/employees'; // Replace with your API URL
-
+  private apiUrl = 'http://localhost:3000/api/employees'; 
   constructor(private http: HttpClient) {}
 
   getEmployees(): Observable<Employee[]> {

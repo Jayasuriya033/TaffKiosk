@@ -1,6 +1,5 @@
 
-
-<app-navbar />
+<app-navbar></app-navbar>
 <table>
     <thead>
         <tr>
@@ -11,10 +10,10 @@
             <th>Phone No</th>
             <th>Location</th>
             <th>Username</th>
-            <th>pasword</th>
+            <!-- <th>Password</th> --> <!-- Consider removing this field -->
             <th>Role ID</th>
             <th>Created By</th>
-          </tr>
+        </tr>
     </thead>
     <tbody>
         <tr *ngFor="let employee of employees">
@@ -25,9 +24,9 @@
             <td>{{ employee.phoneNo }}</td>
             <td>{{ employee.location }}</td>
             <td>{{ employee.username }}</td>
-            <td>{{ employee.password }}</td>
+            <!-- <td>{{ employee.password }}</td> --> <!-- Consider removing this field -->
             <td>{{ employee.roleId }}</td>
             <td>{{ employee.createdBy }}</td>
-          </tr>
+        </tr>
     </tbody>
 </table>

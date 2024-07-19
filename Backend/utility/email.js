@@ -3,16 +3,14 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Configure the email transporter
 const transporter = nodemailer.createTransport({
-  service: 'Gmail', // You can use any email service provider
+  service: 'Gmail', 
   auth: {
     user: process.env.EMAIL, 
     pass: process.env.PASSWORD 
   },
 });
 
-// Function to send email
 export const sendSignupEmail = async (to, username, password) => {
   const mailOptions = {
     from: process.env.EMAIL,

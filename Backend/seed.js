@@ -1,9 +1,12 @@
-import { PrismaClient } from '@prisma/client';
+import pkg from '@prisma/client';
+const { PrismaClient } = pkg;
 
 const prisma = new PrismaClient();
 
 async function main() {
   try {
+    await prisma.role.deleteMany({});
+
     await prisma.role.createMany({
       data: [
         {
@@ -31,6 +34,7 @@ async function main() {
 
     console.log('Roles seeded successfully.');
   } catch (error) {
+    console.log("Already created..");
     console.error('Error seeding roles:', error);
   } finally {
     await prisma.$disconnect();
