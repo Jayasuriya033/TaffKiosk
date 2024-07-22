@@ -33,3 +33,38 @@ model Employee {
 
   role           Role      @relation("RoleEmployee", fields: [roleId], references: [id])
 }
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+model Role{
+  id Int @id @default(autoincrement())
+  name String
+  username String @unique
+  createdAt @DateTime @default(now()) @map("Creatd Time") @db.Timestamp(0)
+  employees Employee[] @references("RoleEmployee)
+}
+
+
+model Employee {
+  id Int @id @default(autoincrement())
+  name String 
+  username String @unique
+  password String
+  roleId Int
+  createdAt @DateTime @default(now) @map("Created Time") @db.Timestamp(0)
+  lastModifiedAt @updatedAt
+  role Role @relation("RoleEmployee", fields: [roleId], references: [id]) 
+}

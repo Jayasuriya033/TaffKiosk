@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { OtpSend } from '../../services/userservices';
+import { OtpSend } from '../services/userservices';
+import { OtpValidations } from '../services/userservices';
+import { UpdatePassword } from '../services/userservices';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
@@ -27,6 +29,8 @@ export class ChangePasswordComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     private otpSend : OtpSend,
+    private otpValidations : OtpValidations,
+    private passwordUpdate : UpdatePassword,
     private snackBar: MatSnackBar,
 
   ) 
@@ -47,13 +51,7 @@ export class ChangePasswordComponent implements OnInit {
       passwordValidation: this.passwordValidation,
     },{  validator: this.passwordMatchValidator
     } );
-  }
-     // newPassword: ['', [Validators.required, Validators.minLength(6)]],
-      // confirmPassword: ['', [Validators.required]]
-    //  {
-    //    validator: this.passwordMatchValidator
-    //    }
-     
+  }     
   ngOnInit(): void {
   }
   showPasswordfun(){
@@ -61,13 +59,12 @@ export class ChangePasswordComponent implements OnInit {
   }
 
 onSendOtp(): void {
-  // this.status = 2;
   if (this.mobileNumberValidation.invalid) {
     this.error = 'Please fill in the Mobile Number.';
     return;
   }
   const mobileNumber = this.mobileNumberValidation.value;
-  this.otpSend.otp(mobileNumber).subscribe(
+  this.otpSend.mNumber(mobileNumber).subscribe(
     response => {
       console.log("Mobile number sent successfully...");
       if(response.validation){
@@ -87,6 +84,8 @@ onSendOtp(): void {
   );
 }
 
+
+
 verifyOtp():void{
   this.validationOtp = true;
   this.status = 3;
@@ -95,16 +94,37 @@ verifyOtp():void{
     return;
   }
   const otpValidation = this.otpValidation.value;
-  this.otpSend.otp(otpValidation).subscribe(
+  this.otpValidations.otp(otpValidation).subscribe(
     response => {
-      console.log("Mobile number sent successfully...");
+      console.log("OTP Verified!");
     },
     error => {
-      console.log("Mobile number is not there..");
+      console.log("Invalid OTP!");
     }
   );
 
 }
+
+
+
+
+updatePassword():void{
+  if (this.passwordValidation.invalid) {
+    this.error = 'Please fill the All details';
+    return;
+  }
+  const passwordValidation = this.passwordValidation.value;
+  this.passwordUpdate.passwordUpdate(passwordValidation).subscribe(
+    response => {
+      console.log("Password Updated");
+    },
+    error => {
+      console.log("Error---");
+    }
+  );
+}
+
+
 
   passwordMatchValidator(form: FormGroup) {
     return form.get('newPassword')?.value === form.get('confirmPassword')?.value

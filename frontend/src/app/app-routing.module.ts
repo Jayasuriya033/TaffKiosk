@@ -9,7 +9,6 @@ import { TableComponent } from './table/table.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { AccountComponent } from './account/account.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },          
@@ -20,7 +19,6 @@ const routes: Routes = [
   { path: 'forgot-password', component: ChangePasswordComponent },
   { path: 'navigation-bar', component: NavigationBarComponent },
   { path: 'account', component: AccountComponent },
-  { path: 'forgotpassword', component: ForgotPasswordComponent },
   { path: '**', component: NotFoundComponent }     
 ];
 

@@ -98,7 +98,6 @@ import { EmployeeService } from './employee.service';
 // import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { AccountComponent } from './account/account.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 // import { EmployeesTableComponent } from './employees-table/employees-table.component';
 
 // import { MatButtonModule } from '@angular/material/button';
@@ -115,7 +114,6 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
         TableComponent,
         ChangePasswordComponent,
         AccountComponent,
-        ForgotPasswordComponent,
         // EmployeesTableCompon ent
     ],
     providers: [EmployeeService],

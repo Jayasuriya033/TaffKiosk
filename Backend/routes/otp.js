@@ -27,4 +27,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+
+router.get
+
 export default router;

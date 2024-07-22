@@ -22,8 +22,8 @@
 
 
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/userservices';
-import { LogoutService } from '../../services/userservices';
+import { AuthService } from '../services/userservices';
+import { LogoutService } from '../services/userservices';
 
 @Component({
   selector: 'app-account',

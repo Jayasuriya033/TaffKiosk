@@ -77,7 +77,7 @@ export class AuthService {
 }) export class OtpSend{
   private apiUrl = 'http://localhost:3000/otp'; 
   constructor(private http: HttpClient){}
-  otp(credentials: {mobileNumber:string }) :Observable<any>{
+  mNumber(credentials: {mobileNumber:string }) :Observable<any>{
     return this.http.post<any>(this.apiUrl, credentials);
   }
 
@@ -85,6 +85,21 @@ export class AuthService {
 
 @Injectable({
   providedIn:'root'
-})export class otpValidation{
+})export class OtpValidations{
   private apiUrl =  'http://localhost:3000/otp';
+  constructor(private http: HttpClient){}
+  otp(credentials: {opt:string }) :Observable<any>{
+    return this.http.post<any>(this.apiUrl, credentials);
+  }
+}
+
+
+@Injectable({
+  providedIn : 'root'
+}) export class UpdatePassword{
+  private apiUrl =  'http://localhost:3000/otp';
+  constructor(private http: HttpClient){}
+  passwordUpdate(credentials: {opt:string }) :Observable<any>{
+    return this.http.put<any>(this.apiUrl, credentials);
+  }
 }
