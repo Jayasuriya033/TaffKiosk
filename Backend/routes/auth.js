@@ -22,7 +22,7 @@
       next();
     });
   };
-
+console.log();
   router.get('/logout', (req, res) => {
     res.clearCookie('token');
     return res.json({ logout: true });
