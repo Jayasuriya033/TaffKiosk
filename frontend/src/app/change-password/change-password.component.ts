@@ -6,6 +6,8 @@ import { OtpSend } from '../services/userservices';
 import { OtpValidations } from '../services/userservices';
 import { UpdatePassword } from '../services/userservices';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SetUserName } from '../services/userservices';
+
 
 
 @Component({
@@ -23,6 +25,9 @@ export class ChangePasswordComponent implements OnInit {
   status: any = 1;
   validationOtp: boolean = false;
   mobileNumber:any = ""
+  username:any = ""
+  userName : string | null = null;
+
 
   constructor(
     private fb: FormBuilder,
@@ -32,10 +37,12 @@ export class ChangePasswordComponent implements OnInit {
     private otpValidations : OtpValidations,
     private passwordUpdate : UpdatePassword,
     private snackBar: MatSnackBar,
+    private setUserName: SetUserName
 
   ) 
   {
     this.mobileNumberValidation = this.fb.group({
+      username: ['', [Validators.required]],     
       mobileNumber: ['', [Validators.required]],     
     }, );
     this.otpValidation = this.fb.group({
@@ -53,10 +60,15 @@ export class ChangePasswordComponent implements OnInit {
     } );
   }     
   ngOnInit(): void {
+    
+    this.username = localStorage.getItem('setUserName')
+    console.log('Role ID:', this.userName); 
+  
   }
   showPasswordfun(){
     this.showPassword = !this.showPassword;
   }
+
 
 onSendOtp(): void {
   if (this.mobileNumberValidation.invalid) {
@@ -73,7 +85,7 @@ onSendOtp(): void {
     },
     error => {
       this.error = 'Invalid username or password';
-      this.snackBar.open('Mobile Number not Exist..', 'Close', {
+      this.snackBar.open('User Name and Mobile Number Mismatched ⚠️', 'Close', {
         duration: 3000,
         verticalPosition: 'top',
         horizontalPosition: 'center',
@@ -114,9 +126,25 @@ updatePassword():void{
     return;
   }
   const passwordValidation = this.passwordValidation.value;
-  this.passwordUpdate.passwordUpdate(passwordValidation).subscribe(
+  const mobileNumber = this.mobileNumberValidation.value;
+  // var dataArray = [passwordValidation, this.username, this.mobileNumber];
+
+  const credentials = {
+    username: this.username,
+    newPassword: this.passwordValidation.value.newPassword,
+    mobileNumber: this.mobileNumber,
+  };
+  this.passwordUpdate.passwordUpdate(credentials).subscribe(
     response => {
-      console.log("Password Updated");
+      if(response.passwordUpdate){
+        this.router.navigate(['/']);
+        this.snackBar.open('Password Updated Successfully', 'Close', {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+          panelClass: ['error-snackbar']
+        });
+      }
     },
     error => {
       console.log("Error---");

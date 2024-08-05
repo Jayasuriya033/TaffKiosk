@@ -9,16 +9,19 @@ import { TableComponent } from './table/table.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { AccountComponent } from './account/account.component';
+import { AuthGuard } from './services/session.guard';
+
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },          
-  { path: 'home', component: HomeComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: '', redirectTo: '/login', pathMatch:'full'},   
+  { path: 'login', component: LoginComponent},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'signup', component: SignupComponent, canActivate: [AuthGuard]  },
   { path: 'submit-form', component: SubmitFormComponent },
-  { path: 'user', component: TableComponent },
+  { path: 'user', component: TableComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ChangePasswordComponent },
-  { path: 'navigation-bar', component: NavigationBarComponent },
-  { path: 'account', component: AccountComponent },
+  { path: 'navigation-bar', component: NavigationBarComponent, canActivate: [AuthGuard] },
+  { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
   { path: '**', component: NotFoundComponent }     
 ];
 

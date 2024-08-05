@@ -4,7 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthService } from '../services/userservices';
+import { SetUserName } from '../services/userservices';
+import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +16,14 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   error: string | null = null;
 showRole: any;
+userName:any = ""
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
     private snackBar: MatSnackBar,
-    private userService: AuthService
+    private setUserName: SetUserName
   ) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
@@ -30,6 +32,21 @@ showRole: any;
   }
 
   ngOnInit(): void {
+    // localStorage.removeItem('setUserName');
+
+    if (typeof localStorage !== 'undefined') {
+      localStorage.clear();
+        } 
+    //     else {
+    //   console.error('localStorage is not defined.');
+    // }
+  }
+
+  setUsername(): void{
+    localStorage.setItem('setUserName', this.userName)
+    this.setUserName.setuserName(String(this.userName))
+    console.log('User Name:', this.userName);   
+
   }
 
   onSubmit(): void {
@@ -40,21 +57,21 @@ showRole: any;
 
     const loginData = this.loginForm.value;
 
-    this.http.post<any>('http://localhost:3000/login', loginData)
-      .subscribe(
+    this.http.post<any>('http://localhost:3000/api/login', loginData).subscribe(
         response => {
-          const role = response.role; 
-          this.userService.setRoleId(Number(role));
-          console.log(role);
-          
-          localStorage.setItem('token', response.token);
-          this.snackBar.open('Login Successful', 'Close', {
-            duration: 3000,
-            verticalPosition: 'top',
-            horizontalPosition: 'center',
-            panelClass: ['message']
-          });
-          this.router.navigate(['/home']);
+          const token = response.token;
+          if (token) {
+            localStorage.setItem('username',response.username)
+            localStorage.setItem('roleId',response.role)
+            localStorage.setItem('token', response.token);
+            this.snackBar.open('Login Successful', 'Close', {
+              duration: 3000,
+              verticalPosition: 'top',
+              horizontalPosition: 'center',
+              panelClass: ['message']
+            });
+
+            this.router.navigate(['/home']);}
         },
         error => {
           this.error = 'Invalid username or password';

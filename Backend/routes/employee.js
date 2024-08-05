@@ -2,7 +2,7 @@ import express from 'express';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import { sendSignupEmail } from '../utility/email.js';
-import { verifyEmployee } from './auth.js';
+
 
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -48,20 +48,20 @@ router.post('/',async (req, res) => {
     location,
     username,
     roleId,
-    createdBy,
     password
   } = req.body;
+  console.log("role name === ", req.roleName);
 
 
   
 
-   if (!firstName || !lastName || !dob || !email || !phoneNo || !location || !roleId || !createdBy) {
+   if (!firstName || !lastName || !dob || !email || !phoneNo || !location || !roleId) {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
   try {
     
-    const formattedUsername = username ? `${username}@taffinc` : generateUsername(firstName, lastName);
+    const formattedUsername = username ? `${username}@taffinc.com` : generateUsername(firstName, lastName);
 
     
     
@@ -71,6 +71,7 @@ router.post('/',async (req, res) => {
   }
     
 
+  
     let hashedPassword = null;
     let generatedPassword = null;
     if (password) {
@@ -91,14 +92,14 @@ router.post('/',async (req, res) => {
         username: formattedUsername,
         password: hashedPassword,
         roleId: parseInt(roleId, 10),
-        createdBy,
+        createdBy : req.roleName,
       },
     });
 
-console.log("password  "+password);
+// console.log("password  "+password);
 
 
-    await sendSignupEmail(email, formattedUsername, generatedPassword || password);
+    // await sendSignupEmail(email, formattedUsername, generatedPassword || password);
 
 
     const response = {

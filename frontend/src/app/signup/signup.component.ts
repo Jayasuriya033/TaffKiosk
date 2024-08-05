@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../services/userservices'; 
 // import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';  
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -33,6 +34,7 @@ export class SignupComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private snackBar: MatSnackBar,
     private userService: UserService 
   ) {
     this.signupForm = this.fb.group({
@@ -44,7 +46,6 @@ export class SignupComponent {
       phoneNo: [undefined, Validators.required], 
       location: ['', Validators.required],
       roleId: [parseInt('', 10), Validators.required],
-      createdBy: ['Self-creating'], 
       // roleId: [,Validators.required],
     });
   }
@@ -55,10 +56,17 @@ export class SignupComponent {
         response => {
           console.log('User registered successfully', response);
           
-          this.router.navigate(['/']);
+          this.router.navigate(['/home']);
         },
         error => {
-          console.error('Error registering user', error);
+          this.router.navigate(['/login']);
+          this.snackBar.open('Unauthorized Request ❌. Please Login again 🔄️', 'Close', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'center',
+            panelClass: ['message']
+          });
+          console.error('Error registering User');
         }
       );
     }

@@ -90,7 +90,7 @@ import { MatCardModule } from '@angular/material/card';
 import { HomeComponent } from './home/home.component';
 import { SubmitFormComponent } from './submit-form/submit-form.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { TableComponent } from './table/table.component';
 import { NavigationBarComponent } from "./navigation-bar/navigation-bar.component";
@@ -98,6 +98,9 @@ import { EmployeeService } from './employee.service';
 // import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { AccountComponent } from './account/account.component';
+import { PracticeComponent } from './practice/practice.component';
+import { CustomInterceptor } from './services/custom.interceptor';
+import { SgtoinrPipe } from './pipe/sgtoinr.pipe';
 // import { EmployeesTableComponent } from './employees-table/employees-table.component';
 
 // import { MatButtonModule } from '@angular/material/button';
@@ -114,9 +117,13 @@ import { AccountComponent } from './account/account.component';
         TableComponent,
         ChangePasswordComponent,
         AccountComponent,
+        PracticeComponent,
+        SgtoinrPipe,
         // EmployeesTableCompon ent
     ],
-    providers: [EmployeeService],
+    providers: [EmployeeService, {
+        provide:HTTP_INTERCEPTORS, useClass: CustomInterceptor, multi: true
+    }],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,
@@ -136,6 +143,7 @@ import { AccountComponent } from './account/account.component';
         MatButtonModule,
         MatSelectModule,
         NavigationBarComponent, 
+        
    
     ]
 })

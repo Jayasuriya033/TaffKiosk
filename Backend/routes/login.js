@@ -1,9 +1,9 @@
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
+import { jwtToken } from './auth.js';
 
 dotenv.config();
 
@@ -23,57 +23,46 @@ router.post('/', async (req, res) => {
     return res.status(400).json({ error: 'Username and password are required' });
   }
 
+
+  
   try {
-    console.log('Attempting to find user:', username);
     const user = await prisma.employee.findUnique({
       where: { username },
-    });
+      include: {role : true}
+    })
 
+    
+    console.log("User -- ", user);
     if (!user) {
       console.log('User not found');
       return res.status(401).json({ error: 'Invalid username or password' });
     }
-
-    console.log('User found:', user);
 
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
       console.log('Password does not match');
       return res.status(401).json({ error: 'Invalid username or password' });
-    }
+    }  
+    const tokenData = {
+        username: user.username,
+        roleName: user.role.roleName,
+        roleId: user.roleId,
+        email: user.email
+        }
+ 
+    const token = jwtToken(tokenData) 
+    // const token = jwtToken(`username :${ user.username}, Role Name:${user.role.roleName}, Role Id: ${user.roleId}, Email : ${user.email}`) 
 
-    function createTokeFormat(username, password) {
-      const userNameAndPassword = `${username + password}`;
-      console.log("UserPassword  ---- " + userNameAndPassword);
-    }
-    
-    // createTokeFormat(username, password) ;
-    // createTokeFormat(user.username, user.password);
+    res.set('Authorization', `Bearer${token}`);
 
-    
-    console.log('Password matches');
-    const token = jwt.sign(
-      { username: createTokeFormat(username, password) },
-      JWT_SECRET,
-      { expiresIn: '1h' } 
-    );
-
-    const decoded = jwt.decode(token);
-    console.log(decoded);
-    console.log(token);
-
-
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: true,
-    });
-console.log("role ID "+ user.roleId);
-    return res.json({ login: true, username: user.username, role: user.roleId});
-  } catch (error) {
+    return res.json({ login: true,username: user.username, role: user.roleId, token : token});
+  }
+   catch (error) {
     console.error('Error logging in:', error);
     res.status(500).json({ error: 'An error occurred while logging in' });
   }
 });
 
 export default router;
+

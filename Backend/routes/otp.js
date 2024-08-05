@@ -5,18 +5,18 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 router.post('/', async (req, res) => {
-  const { mobileNumber } = req.body;
-  if (!mobileNumber) {
-    return res.status(400).json({ error: 'Mobile number is required' });
+  const { username, mobileNumber } = req.body;
+  if (!username || !mobileNumber) {
+    return res.status(400).json({ error: 'User Name and Mobile number is required' });
   }
   try {
     const employee = await prisma.employee.findFirst({
-      where: { phoneNo: mobileNumber},
+      where: { username : username , phoneNo: mobileNumber},
     });
 
     if (!employee) {
       console.log('Mobile Number not found');
-      return res.status(401).json({ error: 'Invalid Mobile Number' });
+      return res.status(401).json({ error: 'Invalid User Name or Mobile Number' });
     }
     // console.log('Mobile Number found:', employee);
 
@@ -28,6 +28,6 @@ router.post('/', async (req, res) => {
 });
 
 
-router.get
+
 
 export default router;
