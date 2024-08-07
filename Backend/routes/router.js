@@ -5,7 +5,7 @@ import { AuthRouter } from './auth.js';
 import cookieParser from "cookie-parser";
 import OtpRouter from './otp.js'
 import UpdatePassword from './updatePassword.js'
-import { verifyEmployee } from './auth.js';
+import { verifyEmployee,blockRole } from './auth.js';
 import loginRouter from './login.js'
 
 
@@ -14,7 +14,7 @@ router.use(cookieParser());
 
 router.use('/login', loginRouter);
 router.use('/roles', roleRouter);
-router.use('/employees', verifyEmployee(['Super Admin','Manager']), employeeRouter);
+router.use('/employees', blockRole(['Super Admin','Manager']), employeeRouter);
 // router.use('/employees', employeeRouter);
 router.use('/auth', AuthRouter);
 router.use('/mobileNumberValidation', OtpRouter);

@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import router from './routes/router.js';
-import loginRouter from './routes/login.js';
+// import loginRouter from './routes/login.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
